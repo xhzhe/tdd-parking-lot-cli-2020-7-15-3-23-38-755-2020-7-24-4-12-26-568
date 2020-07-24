@@ -13,9 +13,6 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-        if (this.parkingLot.size() + 1 > capacity) {
-            return null;
-        }
         Ticket ticket = new Ticket();
         this.parkingLot.put(ticket, car);
         return ticket;
@@ -23,8 +20,14 @@ public class ParkingLot {
 
 
     public Car fetchCar(Ticket ticket) {
-        Car car = this.parkingLot.get(ticket);
-        this.parkingLot.remove(ticket);
-        return car;
+        return this.parkingLot.remove(ticket);
+    }
+
+    public int size() {
+        return this.parkingLot.size();
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }

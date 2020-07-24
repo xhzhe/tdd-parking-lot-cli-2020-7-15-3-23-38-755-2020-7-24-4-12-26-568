@@ -12,6 +12,9 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
+        if (this.parkingLot.size() + 1 > this.parkingLot.getCapacity()) {
+            return null;
+        }
         return this.parkingLot.park(car);
     }
 
