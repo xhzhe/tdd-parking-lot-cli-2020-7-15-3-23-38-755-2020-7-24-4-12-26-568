@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyFacts {
     @Test
-    public void should_return_ticket_when_parking_given_car() {
+    public void should_return_ticket_when_park_given_car() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -28,14 +28,12 @@ class ParkingBoyFacts {
         Ticket ticket = parkingLot.park(car);
         Car carGetFromParkingLot = parkingLot.fetchCar(ticket);
         //then
-        assertNotNull(ticket);
         assertEquals(car, carGetFromParkingLot);
     }
 
     @Test
     public void should_return_null_when_park_given_wrong_ticket() {
         //given
-        Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = new Ticket();
         //when
@@ -51,7 +49,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         //when
         Ticket ticket = parkingLot.park(car);
-        Car carGetFromParkingLot = parkingLot.fetchCar(ticket);
+        parkingLot.fetchCar(ticket);
         Car carFetchTwice = parkingLot.fetchCar(ticket);
         //then
         assertNull(carFetchTwice);
