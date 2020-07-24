@@ -1,5 +1,6 @@
 package com.oocl.cultivation.test;
 
+import com.oocl.cultivation.Car;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
@@ -29,5 +30,17 @@ public class ParkingBoyTest {
         String message = parkingBoy.getReason(null);
         //then
         assertEquals("Please provide your parking ticket.", message);
+    }
+
+    @Test
+    public void should_return_wrong_message_when_ask_parking_boy_too_much_cars() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        //when
+        String message = parkingBoy.getReason(car);
+        //then
+        assertEquals("Not enough position.", message);
     }
 }
