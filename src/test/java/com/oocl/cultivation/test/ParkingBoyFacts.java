@@ -67,4 +67,20 @@ class ParkingBoyFacts {
         //then
         assertNull(ticket);
     }
+
+    @Test
+    public void should_return_correspond_car_when_park_given_correspond_ticket() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        //when
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
+        Car carGetFromParkingLot1 = parkingLot.fetchCar(ticket1);
+        Car carGetFromParkingLot2 = parkingLot.fetchCar(ticket2);
+        //then
+        assertEquals(car1, carGetFromParkingLot1);
+        assertEquals(car2, carGetFromParkingLot2);
+    }
 }
