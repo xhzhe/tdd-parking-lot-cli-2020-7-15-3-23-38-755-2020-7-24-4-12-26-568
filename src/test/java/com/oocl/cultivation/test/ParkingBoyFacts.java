@@ -31,4 +31,16 @@ class ParkingBoyFacts {
         assertNotNull(ticket);
         assertEquals(car, carGetFromParkingLot);
     }
+
+    @Test
+    public void should_return_null_when_park_given_wrong_ticket() {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = new Ticket();
+        //when
+        Car carGetFromParkingLot = parkingLot.fetchCar(ticket);
+        //then
+        assertNull(carGetFromParkingLot);
+    }
 }
