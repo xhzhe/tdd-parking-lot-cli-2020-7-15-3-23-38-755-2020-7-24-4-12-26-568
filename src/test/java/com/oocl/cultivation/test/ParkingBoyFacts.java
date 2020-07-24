@@ -43,4 +43,16 @@ class ParkingBoyFacts {
         //then
         assertNull(carGetFromParkingLot);
     }
+
+    @Test
+    public void should_return_null_when_park_given_same_ticket_twice() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = new Ticket();
+        //when
+        Car carGetFromParkingLot = parkingLot.fetchCar(ticket);
+        Car carFetchTwice = parkingLot.fetchCar(ticket);
+        //then
+        assertNull(carFetchTwice);
+    }
 }
