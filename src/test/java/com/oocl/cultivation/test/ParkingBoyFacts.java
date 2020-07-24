@@ -54,4 +54,17 @@ class ParkingBoyFacts {
         //then
         assertNull(carFetchTwice);
     }
+
+    @Test
+    public void should_return_null_when_park_given_too_much_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = new Ticket();
+        //when
+        for (int times = 0; times < 11; times++) {
+            ticket = parkingLot.park(new Car());
+        }
+        //then
+        assertNull(ticket);
+    }
 }
