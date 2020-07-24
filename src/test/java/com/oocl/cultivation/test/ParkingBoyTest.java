@@ -26,9 +26,8 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Ticket ticket = null;
         //when
-        String message = parkingBoy.getReason(ticket);
+        String message = parkingBoy.getReason((Ticket) null);
         //then
         assertEquals("Please provide your parking ticket.", message);
     }
