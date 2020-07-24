@@ -7,10 +7,22 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
+    public Car fetchCar(Ticket ticket) {
+        return this.parkingLot.fetchCar(ticket);
+    }
+
+    public Ticket park(Car car) {
+        return this.parkingLot.park(car);
+    }
+
     public String getReason(Ticket ticket) {
         if (ticket == null) {
             return "Please provide your parking ticket.";
         }
         return "Unrecognized parking ticket.";
+    }
+
+    public String getReason(Car car) {
+        return "Not enough position.";
     }
 }
