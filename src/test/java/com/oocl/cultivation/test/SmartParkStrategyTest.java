@@ -8,14 +8,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SmartParkingBoyTest {
+public class SmartParkStrategyTest {
     @Test
     public void should_return_5_size_of_parking_lot_when_park_given_10_cars() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new SmartParkStrategy());
         //when
         for (int times = 0; times < 10; times++) {
             parkingBoy.park(new Car());
@@ -32,7 +32,7 @@ public class SmartParkingBoyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new SmartParkStrategy());
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 21; times++) {

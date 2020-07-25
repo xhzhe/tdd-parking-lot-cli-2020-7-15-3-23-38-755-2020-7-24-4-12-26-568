@@ -5,14 +5,17 @@ import java.util.List;
 
 public class ParkingBoy {
     private final List<ParkingLot> parkingLots;
+    private final ParkStrategy parkStrategy;
 
-    public ParkingBoy(ParkingLot parkingLot) {
+    public ParkingBoy(ParkingLot parkingLot, ParkStrategy parkStrategy) {
         this.parkingLots = new ArrayList<>();
         this.parkingLots.add(parkingLot);
+        this.parkStrategy = parkStrategy;
     }
 
-    public ParkingBoy(List<ParkingLot> parkingLots) {
+    public ParkingBoy(List<ParkingLot> parkingLots, ParkStrategy parkStrategy) {
         this.parkingLots = parkingLots;
+        this.parkStrategy = parkStrategy;
     }
 
     public Car fetchCar(Ticket ticket) {
@@ -26,12 +29,7 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        for (ParkingLot parkingLot : this.parkingLots) {
-            if (!(parkingLot.size() + 1 > parkingLot.getCapacity())) {
-                return parkingLot.park(car);
-            }
-        }
-        return null;
+        return parkStrategy.park(car, this.parkingLots);
     }
 
     public String getReason(Ticket ticket) {
