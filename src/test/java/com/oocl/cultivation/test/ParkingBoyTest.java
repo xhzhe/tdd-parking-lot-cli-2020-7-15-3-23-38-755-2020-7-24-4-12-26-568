@@ -1,21 +1,35 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    void before() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    private String systemOut() {
+        return outContent.toString();
+    }
 
     @Test
     public void should_return_ticket_when_park_given_car() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot, new NormalParkStrategy());
         //when
         Ticket ticket = parkingBoy.park(car);
         //then
@@ -99,9 +113,9 @@ public class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
         //when
-        String message = parkingBoy.getReason(ticket);
+        parkingBoy.fetchCar(new Ticket());
         //then
-        assertEquals("Unrecognized parking ticket.", message);
+        assertTrue(systemOut().endsWith("Unrecognized parking ticket.\n"));
     }
 
     @Test
@@ -110,20 +124,22 @@ public class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
         //when
-        String message = parkingBoy.getReason((Ticket) null);
+        parkingBoy.fetchCar(null);
         //then
-        assertEquals("Please provide your parking ticket.", message);
+        assertTrue(systemOut().endsWith("Please provide your parking ticket.\n"));
     }
 
     @Test
     public void should_return_wrong_message_when_ask_parking_boy_too_much_cars() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
-        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot, new NormalParkStrategy());
+        Ticket ticket = new Ticket();
         //when
-        String message = parkingBoy.getReason(car);
+        for (int times = 0; times < 11; times++) {
+            parkingBoy.park(new Car());
+        }
         //then
-        assertEquals("Not enough position.", message);
+        assertTrue(systemOut().endsWith("Not enough position.\n"));
     }
 }
