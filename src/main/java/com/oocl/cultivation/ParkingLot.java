@@ -12,6 +12,11 @@ public class ParkingLot {
         this.parkingLot = new HashMap<>(16);
     }
 
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+        this.parkingLot = new HashMap<>(16);
+    }
+
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
         this.parkingLot.put(ticket, car);
