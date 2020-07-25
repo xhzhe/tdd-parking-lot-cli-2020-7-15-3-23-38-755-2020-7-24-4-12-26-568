@@ -4,6 +4,7 @@ import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,7 +17,7 @@ public class ParkingLotServiceManagerTest {
         for (int times = 0; times < 5; times++) {
             parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys, null);
         //when
         Ticket ticket = parkingLotServiceManager.askBoyToPark(new Car());
         //then
@@ -30,7 +31,7 @@ public class ParkingLotServiceManagerTest {
         for (int times = 0; times < 5; times++) {
             parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys, new ArrayList<>(Arrays.asList(new ParkingLot(), new ParkingLot())));
         //when
         Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
