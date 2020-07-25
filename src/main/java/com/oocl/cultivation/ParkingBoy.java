@@ -50,7 +50,7 @@ public class ParkingBoy {
         return true;
     }
 
-    public List<ParkingLot> getParkingLots() {
-        return this.parkingLots;
+    public int getParkingLotSize(int index) {
+        return this.parkingLots.get(index).size();
     }
 }

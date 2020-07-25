@@ -18,14 +18,14 @@ public class SuperSmartParkStrategyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(10));
         parkingLots.add(new ParkingLot(20));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new SuperSmartParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new SuperSmartParkStrategy());
         //when
         for (int times = 0; times < 10; times++) {
             parkingBoy.park(new Car());
         }
-        List<ParkingLot> result = parkingBoy.getParkingLots();
+
         //then
-        assertEquals(result.get(0).size(), 4);
-        assertEquals(result.get(1).size(), 6);
+        assertEquals(parkingBoy.getParkingLotSize(0), 4);
+        assertEquals(parkingBoy.getParkingLotSize(1), 6);
     }
 }

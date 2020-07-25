@@ -10,35 +10,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class NormalParkStrategyTest {
     @Test
-    public void should_return_list_when_get_parking_lot_given_parking_boy() {
+    public void should_return_size_when_get_parking_lot_given_parking_boy() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new NormalParkStrategy());
         //when
-        List<ParkingLot> result = parkingBoy.getParkingLots();
+        int result1 = parkingBoy.getParkingLotSize(0);
+        int result2 = parkingBoy.getParkingLotSize(1);
         //then
-        assertIterableEquals(parkingLots, result);
+        assertEquals(parkingLots.get(0).size(), result1);
+        assertEquals(parkingLots.get(1).size(), result2);
     }
 
     @Test
-    public void should_return_full_list_when_get_parking_lot_given_11_cars() {
+    public void should_return_size_when_get_parking_lot_given_11_cars() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new NormalParkStrategy());
         //when
         for (int times = 0; times < 11; times++) {
             parkingBoy.park(new Car());
         }
-        List<ParkingLot> result = parkingBoy.getParkingLots();
+        int result = parkingBoy.getParkingLotSize(0);
         //then
-        assertEquals(result.get(0).size(), 10);
+        assertEquals(result, 10);
     }
 }

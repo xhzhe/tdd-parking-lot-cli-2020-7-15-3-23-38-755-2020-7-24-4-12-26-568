@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SmartParkStrategyTest {
     @Test
@@ -15,15 +16,14 @@ public class SmartParkStrategyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new SmartParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new SmartParkStrategy());
         //when
         for (int times = 0; times < 10; times++) {
             parkingBoy.park(new Car());
         }
-        List<ParkingLot> result = parkingBoy.getParkingLots();
         //then
-        assertEquals(result.get(0).size(), 5);
-        assertEquals(result.get(1).size(), 5);
+        assertEquals(parkingBoy.getParkingLotSize(0), 5);
+        assertEquals(parkingBoy.getParkingLotSize(1), 5);
     }
 
     @Test
@@ -32,16 +32,15 @@ public class SmartParkStrategyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,new SmartParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new SmartParkStrategy());
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 21; times++) {
             ticket = parkingBoy.park(new Car());
         }
-        List<ParkingLot> result = parkingBoy.getParkingLots();
         //then
-        assertEquals(result.get(0).size(), 10);
-        assertEquals(result.get(1).size(), 10);
+        assertEquals(parkingBoy.getParkingLotSize(0), 10);
+        assertEquals(parkingBoy.getParkingLotSize(1), 10);
         assertNull(ticket);
     }
 }
