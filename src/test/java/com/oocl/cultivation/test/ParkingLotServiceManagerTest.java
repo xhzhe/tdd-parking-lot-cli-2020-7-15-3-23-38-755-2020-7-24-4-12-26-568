@@ -14,11 +14,25 @@ public class ParkingLotServiceManagerTest {
         //given
         List<ParkingBoy> parkingBoys = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkingBoys.add(new ParkingBoy(new ParkingLot(),new NormalParkStrategy()));
+            parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
         }
         ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys);
         //when
         Ticket ticket = parkingLotServiceManager.askBoyToPark(new Car());
+        //then
+        assertNotNull(ticket);
+    }
+
+    @Test
+    public void should_return_ticket_when_park_itself_given_car() {
+        //given
+        List<ParkingBoy> parkingBoys = new ArrayList<>();
+        for (int times = 0; times < 5; times++) {
+            parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
+        }
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys);
+        //when
+        Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
         assertNotNull(ticket);
     }
