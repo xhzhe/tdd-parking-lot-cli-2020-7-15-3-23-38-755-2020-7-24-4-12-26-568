@@ -34,8 +34,7 @@ public class ParkingBoy implements Parkable {
 
     @Override
     public Ticket park(Car car) {
-        boolean full = isParkingLotsFull();
-        if (full) {
+        if (isParkingLotsFull()) {
             System.out.print("Not enough position.\n");
         }
         Optional<ParkingLot> optionalParkingLot = parkingLots.stream().
