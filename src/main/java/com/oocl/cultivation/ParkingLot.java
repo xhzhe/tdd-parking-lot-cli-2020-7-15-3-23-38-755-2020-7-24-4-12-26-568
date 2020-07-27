@@ -19,6 +19,9 @@ public class ParkingLot implements Parkable {
 
     @Override
     public Ticket park(Car car) {
+        if (this.parkingLot.size() >= this.capacity) {
+            return null;
+        }
         Ticket ticket = new Ticket();
         this.parkingLot.put(ticket, car);
         return ticket;
