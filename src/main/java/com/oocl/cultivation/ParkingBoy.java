@@ -45,12 +45,7 @@ public class ParkingBoy implements Parkable {
     }
 
     private boolean isParkingLotsFull() {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.getCarsCount() > 0) {
-                return false;
-            }
-        }
-        return true;
+        return parkingLots.stream().anyMatch(parkingLot -> parkingLot.getRemainingPosition() > 0);
     }
 
     public int getParkingLotSize(int index) {
