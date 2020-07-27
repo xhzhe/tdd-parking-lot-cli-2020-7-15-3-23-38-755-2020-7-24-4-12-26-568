@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
@@ -14,16 +15,6 @@ public class SmartParkingBoy extends ParkingBoy {
 
     @Override
     public Ticket park(Car car) {
-        int indexOfParkingLot = 0;
-        int remainingPosition = parkingLots.get(0).getRemainingPosition();
-        for (int index = 0; index < parkingLots.size(); index++) {
-            ParkingLot parkingLot = parkingLots.get(index);
-            int margin = parkingLot.getRemainingPosition();
-            if (margin > remainingPosition) {
-                indexOfParkingLot = index;
-                remainingPosition = margin;
-            }
-        }
-        return parkingLots.get(indexOfParkingLot).park(car);
+        return parkingLots.stream().max(Comparator.comparing(ParkingLot::getRemainingPosition)).map(parkingLot -> parkingLot.park(car)).orElse(null);
     }
 }
