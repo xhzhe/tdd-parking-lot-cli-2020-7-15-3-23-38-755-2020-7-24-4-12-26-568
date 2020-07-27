@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ParkingBoy implements Parkable {
@@ -22,14 +23,11 @@ public class ParkingBoy implements Parkable {
             System.out.print("Please provide your parking ticket.\n");
             return null;
         }
-        for (ParkingLot parkingLot : this.parkingLots) {
-            Car car = parkingLot.fetchCar(ticket);
-            if (car != null) {
-                return car;
-            }
+        Optional<Car> optionalCar = parkingLots.stream().map(parkingLot -> parkingLot.fetchCar(ticket)).filter(Objects::nonNull).findFirst();
+        if (!optionalCar.isPresent()) {
+            System.out.print("Unrecognized parking ticket.\n");
         }
-        System.out.print("Unrecognized parking ticket.\n");
-        return null;
+        return optionalCar.orElse(null);
     }
 
     @Override
