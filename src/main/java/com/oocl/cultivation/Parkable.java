@@ -1,6 +1,6 @@
 package com.oocl.cultivation;
 
-public interface parkable {
+public interface Parkable {
     Ticket park(Car car);
 
     Car fetchCar(Ticket ticket);

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,11 +25,11 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_ticket_when_park_given_car() {
         //given
-        List<parkable> parkables = new ArrayList<>();
+        List<Parkable> Parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkables.add(new ParkingBoy(new ParkingLot()));
+            Parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(Parkables);
         //when
         Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
@@ -40,11 +39,11 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_ticket_when_park_itself_given_car() {
         //given
-        List<parkable> parkables = new ArrayList<>();
+        List<Parkable> Parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkables.add(new ParkingBoy(new ParkingLot()));
+            Parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(Parkables);
         //when
         Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
@@ -54,11 +53,11 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_message_when_park_given_too_much_cars() {
         //given
-        List<parkable> parkables = new ArrayList<>();
+        List<Parkable> Parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkables.add(new ParkingBoy(new ParkingLot()));
+            Parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(Parkables);
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 100; times++) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ParkingBoy implements parkable {
+public class ParkingBoy implements Parkable {
     protected final List<ParkingLot> parkingLots;
 
     public ParkingBoy(ParkingLot parkingLot) {

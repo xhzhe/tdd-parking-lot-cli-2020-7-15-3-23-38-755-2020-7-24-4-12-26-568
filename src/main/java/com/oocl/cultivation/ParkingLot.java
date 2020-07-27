@@ -3,7 +3,7 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot implements parkable {
+public class ParkingLot implements Parkable {
     private final Map<Ticket, Car> parkingLot;
     private final int capacity;
 
