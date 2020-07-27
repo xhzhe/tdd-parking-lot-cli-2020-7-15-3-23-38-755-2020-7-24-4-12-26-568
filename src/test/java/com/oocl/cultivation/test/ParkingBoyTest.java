@@ -1,12 +1,10 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +27,7 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot, new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         Ticket ticket = parkingBoy.park(car);
         //then
@@ -41,7 +39,7 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         Ticket ticket = parkingBoy.park(car);
         Car carGetFromParkingLot = parkingBoy.fetchCar(ticket);
@@ -54,7 +52,7 @@ public class ParkingBoyTest {
         //given
         Ticket ticket = new Ticket();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         Car carGetFromParkingLot = parkingBoy.fetchCar(ticket);
         //then
@@ -66,7 +64,7 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetchCar(ticket);
@@ -80,7 +78,7 @@ public class ParkingBoyTest {
         //given
         Ticket ticket = new Ticket();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         for (int times = 0; times < 11; times++) {
             ticket = parkingBoy.park(new Car());
@@ -95,7 +93,7 @@ public class ParkingBoyTest {
         Car car1 = new Car();
         Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         Ticket ticket1 = parkingBoy.park(car1);
         Ticket ticket2 = parkingBoy.park(car2);
@@ -111,7 +109,7 @@ public class ParkingBoyTest {
         //given
         Ticket ticket = new Ticket();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         parkingBoy.fetchCar(new Ticket());
         //then
@@ -122,7 +120,7 @@ public class ParkingBoyTest {
     public void should_return_wrong_message_when_ask_parking_boy_given_no_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot,new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
         parkingBoy.fetchCar(null);
         //then
@@ -133,7 +131,7 @@ public class ParkingBoyTest {
     public void should_return_wrong_message_when_ask_parking_boy_too_much_cars() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot, new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 11; times++) {

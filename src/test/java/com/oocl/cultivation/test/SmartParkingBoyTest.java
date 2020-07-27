@@ -9,14 +9,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class SmartParkStrategyTest {
+public class SmartParkingBoyTest {
     @Test
     public void should_return_5_size_of_parking_lot_when_park_given_10_cars() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new SmartParkStrategy());
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLots);
         //when
         for (int times = 0; times < 10; times++) {
             parkingBoy.park(new Car());
@@ -32,7 +32,7 @@ public class SmartParkStrategyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new SmartParkStrategy());
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLots);
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 21; times++) {

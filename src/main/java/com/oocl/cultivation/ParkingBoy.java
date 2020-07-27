@@ -2,22 +2,21 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class ParkingBoy {
-    private final List<ParkingLot> parkingLots;
-    private final ParkStrategy parkStrategy;
+public class ParkingBoy implements parkable {
+    protected final List<ParkingLot> parkingLots;
 
-    public ParkingBoy(ParkingLot parkingLot, ParkStrategy parkStrategy) {
+    public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLots = new ArrayList<>();
         this.parkingLots.add(parkingLot);
-        this.parkStrategy = parkStrategy;
     }
 
-    public ParkingBoy(List<ParkingLot> parkingLots, ParkStrategy parkStrategy) {
+    public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
-        this.parkStrategy = parkStrategy;
     }
 
+    @Override
     public Car fetchCar(Ticket ticket) {
         if (ticket == null) {
             System.out.print("Please provide your parking ticket.\n");
@@ -33,12 +32,16 @@ public class ParkingBoy {
         return null;
     }
 
+    @Override
     public Ticket park(Car car) {
         boolean full = isParkingLotsFull();
         if (full) {
             System.out.print("Not enough position.\n");
         }
-        return parkStrategy.park(car, this.parkingLots);
+        Optional<ParkingLot> optionalParkingLot = parkingLots.stream().
+                filter(parkingLot -> parkingLot.getCarsCount() < parkingLot.getCapacity()).
+                findFirst();
+        return optionalParkingLot.map(parkingLot -> parkingLot.park(car)).orElse(null);
     }
 
     private boolean isParkingLotsFull() {

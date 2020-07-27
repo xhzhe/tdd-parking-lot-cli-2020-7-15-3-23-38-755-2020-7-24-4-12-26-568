@@ -1,7 +1,6 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
-import com.oocl.cultivation.NormalParkStrategy;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.Test;
@@ -11,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NormalParkStrategyTest {
+public class NormalParkableTest {
     @Test
     public void should_return_size_when_get_parking_lot_given_parking_boy() {
         //given
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
         int result1 = parkingBoy.getParkingLotSize(0);
         int result2 = parkingBoy.getParkingLotSize(1);
@@ -33,7 +32,7 @@ public class NormalParkStrategyTest {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots, new NormalParkStrategy());
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
         for (int times = 0; times < 11; times++) {
             parkingBoy.park(new Car());

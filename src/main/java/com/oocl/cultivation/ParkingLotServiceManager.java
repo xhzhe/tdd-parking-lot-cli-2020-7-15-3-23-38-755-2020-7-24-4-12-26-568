@@ -3,17 +3,16 @@ package com.oocl.cultivation;
 import java.util.List;
 import java.util.Random;
 
-public class ParkingLotServiceManager extends ParkingBoy {
-    private final List<ParkingBoy> parkingBoys;
+public class ParkingLotServiceManager {
+    private final List<parkable> parkables;
 
-    public ParkingLotServiceManager(List<ParkingBoy> parkingBoys, List<ParkingLot> parkingLots) {
-        super(parkingLots, new NormalParkStrategy());
-        this.parkingBoys = parkingBoys;
+    public ParkingLotServiceManager(List<parkable> parkables) {
+        this.parkables = parkables;
     }
 
-    public Ticket askBoyToPark(Car car) {
+    public Ticket park(Car car) {
         Random random = new Random(System.currentTimeMillis());
-        int index = random.nextInt(parkingBoys.size());
-        return parkingBoys.get(index).park(car);
+        int index = random.nextInt(parkables.size());
+        return parkables.get(index).park(car);
     }
 }

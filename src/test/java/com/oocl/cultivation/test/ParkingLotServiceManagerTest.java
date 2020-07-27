@@ -1,7 +1,6 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,13 +26,13 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_ticket_when_park_given_car() {
         //given
-        List<ParkingBoy> parkingBoys = new ArrayList<>();
+        List<parkable> parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
+            parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys, null);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
         //when
-        Ticket ticket = parkingLotServiceManager.askBoyToPark(new Car());
+        Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
         assertNotNull(ticket);
     }
@@ -41,11 +40,11 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_ticket_when_park_itself_given_car() {
         //given
-        List<ParkingBoy> parkingBoys = new ArrayList<>();
+        List<parkable> parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
+            parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys, new ArrayList<>(Arrays.asList(new ParkingLot(), new ParkingLot())));
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
         //when
         Ticket ticket = parkingLotServiceManager.park(new Car());
         //then
@@ -55,11 +54,11 @@ public class ParkingLotServiceManagerTest {
     @Test
     public void should_return_message_when_park_given_too_much_cars() {
         //given
-        List<ParkingBoy> parkingBoys = new ArrayList<>();
+        List<parkable> parkables = new ArrayList<>();
         for (int times = 0; times < 5; times++) {
-            parkingBoys.add(new ParkingBoy(new ParkingLot(), new NormalParkStrategy()));
+            parkables.add(new ParkingBoy(new ParkingLot()));
         }
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkingBoys, new ArrayList<>(Arrays.asList(new ParkingLot(), new ParkingLot())));
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(parkables);
         Ticket ticket = new Ticket();
         //when
         for (int times = 0; times < 100; times++) {

@@ -2,9 +2,18 @@ package com.oocl.cultivation;
 
 import java.util.List;
 
-public class SuperSmartParkStrategy implements ParkStrategy{
+public class SuperSmartParkingBoy extends ParkingBoy {
+
+    public SuperSmartParkingBoy(ParkingLot parkingLot) {
+        super(parkingLot);
+    }
+
+    public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
+        super(parkingLots);
+    }
+
     @Override
-    public Ticket park(Car car, List<ParkingLot> parkingLots) {
+    public Ticket park(Car car) {
         int indexOfParkingLot = 0;
         double remainingRate = parkingLots.get(0).getRemainingRate();
         for (int index = 0; index < parkingLots.size(); index++) {
