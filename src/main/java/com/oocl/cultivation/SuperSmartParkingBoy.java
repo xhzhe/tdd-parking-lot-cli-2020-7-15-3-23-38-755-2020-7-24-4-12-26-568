@@ -24,9 +24,6 @@ public class SuperSmartParkingBoy extends ParkingBoy {
                 remainingRate = margin;
             }
         }
-        if (remainingRate > 0) {
-            return parkingLots.get(indexOfParkingLot).park(car);
-        }
-        return null;
+        return parkingLots.get(indexOfParkingLot).park(car);
     }
 }

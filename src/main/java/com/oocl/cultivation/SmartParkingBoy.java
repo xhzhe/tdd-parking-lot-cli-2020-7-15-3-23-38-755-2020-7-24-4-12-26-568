@@ -24,9 +24,6 @@ public class SmartParkingBoy extends ParkingBoy {
                 remainingPosition = margin;
             }
         }
-        if (remainingPosition > 0) {
-            return parkingLots.get(indexOfParkingLot).park(car);
-        }
-        return null;
+        return parkingLots.get(indexOfParkingLot).park(car);
     }
 }
