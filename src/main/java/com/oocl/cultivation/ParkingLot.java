@@ -28,11 +28,19 @@ public class ParkingLot {
         return this.parkingLot.remove(ticket);
     }
 
-    public int size() {
+    public int getCarsCount() {
         return this.parkingLot.size();
     }
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public int getRemainingPosition() {
+        return capacity - this.parkingLot.size();
+    }
+
+    public double getRemainingRate() {
+        return (double) (capacity - this.parkingLot.size()) / this.capacity;
     }
 }

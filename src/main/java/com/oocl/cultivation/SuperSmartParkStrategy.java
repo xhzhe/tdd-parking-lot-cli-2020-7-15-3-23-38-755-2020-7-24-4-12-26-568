@@ -6,10 +6,10 @@ public class SuperSmartParkStrategy implements ParkStrategy{
     @Override
     public Ticket park(Car car, List<ParkingLot> parkingLots) {
         int indexOfParkingLot = 0;
-        double remainingRate = (double) (parkingLots.get(0).getCapacity() - parkingLots.get(0).size()) / parkingLots.get(0).getCapacity();
+        double remainingRate = parkingLots.get(0).getRemainingRate();
         for (int index = 0; index < parkingLots.size(); index++) {
             ParkingLot parkingLot = parkingLots.get(index);
-            double margin = (double) (parkingLot.getCapacity() - parkingLot.size()) / parkingLot.getCapacity();
+            double margin = parkingLot.getRemainingRate();
             if (margin > remainingRate) {
                 indexOfParkingLot = index;
                 remainingRate = margin;

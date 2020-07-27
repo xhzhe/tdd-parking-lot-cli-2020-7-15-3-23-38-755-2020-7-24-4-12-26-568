@@ -43,7 +43,7 @@ public class ParkingBoy {
 
     private boolean isParkingLotsFull() {
         for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.size() > 0) {
+            if (parkingLot.getCarsCount() > 0) {
                 return false;
             }
         }
@@ -51,6 +51,6 @@ public class ParkingBoy {
     }
 
     public int getParkingLotSize(int index) {
-        return this.parkingLots.get(index).size();
+        return this.parkingLots.get(index).getCarsCount();
     }
 }

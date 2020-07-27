@@ -23,8 +23,8 @@ public class NormalParkStrategyTest {
         int result1 = parkingBoy.getParkingLotSize(0);
         int result2 = parkingBoy.getParkingLotSize(1);
         //then
-        assertEquals(parkingLots.get(0).size(), result1);
-        assertEquals(parkingLots.get(1).size(), result2);
+        assertEquals(parkingLots.get(0).getCarsCount(), result1);
+        assertEquals(parkingLots.get(1).getCarsCount(), result2);
     }
 
     @Test

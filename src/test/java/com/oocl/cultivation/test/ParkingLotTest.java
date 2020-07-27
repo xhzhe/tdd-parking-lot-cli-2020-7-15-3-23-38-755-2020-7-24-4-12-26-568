@@ -14,7 +14,7 @@ public class ParkingLotTest {
         //when
         parkingLot.park(new Car());
         //then
-        assertEquals(1, parkingLot.size());
+        assertEquals(1, parkingLot.getCarsCount());
     }
 
     @Test
