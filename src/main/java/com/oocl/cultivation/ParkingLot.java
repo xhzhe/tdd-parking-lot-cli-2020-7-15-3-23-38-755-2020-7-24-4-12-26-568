@@ -17,6 +17,7 @@ public class ParkingLot implements Parkable {
         this.parkingLot = new HashMap<>(16);
     }
 
+    @Override
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
         this.parkingLot.put(ticket, car);
@@ -24,6 +25,7 @@ public class ParkingLot implements Parkable {
     }
 
 
+    @Override
     public Car fetchCar(Ticket ticket) {
         return this.parkingLot.remove(ticket);
     }
