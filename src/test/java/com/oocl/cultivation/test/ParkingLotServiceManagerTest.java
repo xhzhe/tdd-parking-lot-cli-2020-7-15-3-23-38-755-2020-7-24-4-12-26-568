@@ -19,9 +19,11 @@ public class ParkingLotServiceManagerTest {
     void before() {
         System.setOut(new PrintStream(outContent));
     }
+
     private String systemOut() {
         return outContent.toString();
     }
+
     @Test
     public void should_return_ticket_when_park_given_car() {
         //given
